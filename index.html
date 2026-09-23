@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration Portal</title>
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Custom CSS Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Main Centered Container -->
+  <div class="page-wrapper">
+    <div class="registration-card">
+
+      <!-- ==============================================
+           LEFT PANEL: Branding, Features & Highlights
+           ============================================== -->
+      <aside class="left-panel">
+        <div class="left-panel-content">
+
+          <!-- Graduation Cap Icon -->
+          <div class="campus-badge">
+            <span class="cap-emoji" aria-hidden="true">🎓</span>
+          </div>
+
+          <!-- Headings -->
+          <h1 class="brand-title">Join Our Campus</h1>
+          <p class="brand-tagline">Register to begin your academic journey</p>
+
+          <!-- Feature Bullets -->
+          <div class="feature-list">
+
+            <div class="feature-item">
+              <div class="feature-icon-box">
+                <span>⚡</span>
+              </div>
+              <div class="feature-text">
+                <h3>Fast Process</h3>
+                <p>Complete registration in under 2 minutes</p>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon-box">
+                <span>🔒</span>
+              </div>
+              <div class="feature-text">
+                <h3>Secure Data</h3>
+                <p>Your details are safely encrypted and stored</p>
+              </div>
+            </div>
+
+            <div class="feature-item">
+              <div class="feature-icon-box">
+                <span>✉️</span>
+              </div>
+              <div class="feature-text">
+                <h3>Instant Confirmation</h3>
+                <p>Immediate digital enrollment verification</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- Left Panel Footer -->
+        <div class="left-panel-footer">
+          <span>&copy; 2026 University Admissions. All rights reserved.</span>
+        </div>
+      </aside>
+
+      <!-- ==============================================
+           RIGHT PANEL: The Registration Form
+           ============================================== -->
+      <main class="right-panel">
+
+        <!-- Form Header with Live Progress Bar -->
+        <div class="form-header">
+          <div class="form-header-top">
+            <div>
+              <h2 class="form-title">Student Registration</h2>
+              <p class="form-subtitle">Fill in your information to enroll</p>
+            </div>
+            <div class="step-indicator" id="step-indicator">
+              <span id="fields-completed-count">0</span> of 6 completed
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progress-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Success Overlay Card (Shown upon successful submit) -->
+        <div class="success-card" id="success-card" hidden>
+          <div class="success-icon-wrapper">
+            <div class="success-checkmark">
+              <svg viewBox="0 0 52 52" class="checkmark-svg">
+                <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" />
+                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+              </svg>
+            </div>
+          </div>
+          <h2 class="success-title">Registration Complete!</h2>
+          <p class="success-message">
+            Welcome aboard, <strong id="success-student-name">Student</strong>! Your application for <span
+              id="success-course-name">your course</span> has been received successfully.
+          </p>
+          <div class="success-meta">
+            <div class="meta-row">
+              <span class="meta-label">Status:</span>
+              <span class="meta-value status-active">Verified & Enrolled</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Application ID:</span>
+              <span class="meta-value" id="success-app-id">#STU-2026-001</span>
+            </div>
+          </div>
+          <button type="button" class="btn-register-another" id="btn-register-another">
+            Register Another Student
+          </button>
+        </div>
+
+        <!-- Form Elements -->
+        <form id="student-form" novalidate>
+
+          <div class="form-grid">
+
+            <!-- 1. Full Name -->
+            <div class="form-group" id="group-full_name">
+              <label for="full_name" class="form-label">
+                Full Name <span class="required-star">*</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icon" aria-hidden="true">👤</span>
+                <input type="text" id="full_name" name="full_name" class="form-input" placeholder="e.g. Alex Morgan"
+                  autocomplete="name" required>
+              </div>
+              <div class="error-message" id="err-full_name"></div>
+            </div>
+
+            <!-- 2. Email Address -->
+            <div class="form-group" id="group-email">
+              <label for="email" class="form-label">
+                Email Address <span class="required-star">*</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icon" aria-hidden="true">✉️</span>
+                <input type="email" id="email" name="email" class="form-input" placeholder="e.g. alex@example.com"
+                  autocomplete="email" required>
+              </div>
+              <div class="error-message" id="err-email"></div>
+            </div>
+
+            <!-- 3. Phone Number -->
+            <div class="form-group" id="group-phone">
+              <label for="phone" class="form-label">
+                Phone Number <span class="required-star">*</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icon" aria-hidden="true">📞</span>
+                <input type="tel" id="phone" name="phone" class="form-input" placeholder="10-digit mobile number"
+                  maxlength="10" autocomplete="tel" required>
+              </div>
+              <div class="error-message" id="err-phone"></div>
+            </div>
+
+            <!-- 4. Course Selection -->
+            <div class="form-group" id="group-course">
+              <label for="course" class="form-label">
+                Course <span class="required-star">*</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icon" aria-hidden="true">📚</span>
+                <select id="course" name="course" class="form-input form-select" required>
+                  <option value="" disabled selected>Select your course...</option>
+                  <option value="BCA">BCA (Bachelor of Computer Applications)</option>
+                  <option value="MCA">MCA (Master of Computer Applications)</option>
+                  <option value="BSc CS">BSc CS (B.Sc. Computer Science)</option>
+                  <option value="MSc CS">MSc CS (M.Sc. Computer Science)</option>
+                  <option value="BBA">BBA (Bachelor of Business Admin)</option>
+                  <option value="MBA">MBA (Master of Business Admin)</option>
+                </select>
+                <span class="select-arrow" aria-hidden="true">▼</span>
+              </div>
+              <div class="error-message" id="err-course"></div>
+            </div>
+
+            <!-- 5. Date of Birth -->
+            <div class="form-group" id="group-dob">
+              <label for="dob" class="form-label">
+                Date of Birth <span class="required-star">*</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icon" aria-hidden="true">📅</span>
+                <input type="date" id="dob" name="dob" class="form-input" required>
+              </div>
+              <div class="error-message" id="err-dob"></div>
+            </div>
+
+            <!-- 6. Gender Selection -->
+            <div class="form-group" id="group-gender">
+              <label class="form-label">
+                Gender <span class="required-star">*</span>
+              </label>
+              <div class="gender-pill-group">
+                <label class="gender-pill" for="gender-male">
+                  <input type="radio" id="gender-male" name="gender" value="Male">
+                  <span class="pill-custom">
+                    <span class="pill-dot"></span>
+                    Male
+                  </span>
+                </label>
+
+                <label class="gender-pill" for="gender-female">
+                  <input type="radio" id="gender-female" name="gender" value="Female">
+                  <span class="pill-custom">
+                    <span class="pill-dot"></span>
+                    Female
+                  </span>
+                </label>
+
+                <label class="gender-pill" for="gender-other">
+                  <input type="radio" id="gender-other" name="gender" value="Other">
+                  <span class="pill-custom">
+                    <span class="pill-dot"></span>
+                    Other
+                  </span>
+                </label>
+              </div>
+              <div class="error-message" id="err-gender"></div>
+            </div>
+
+            <!-- 7. Address (Optional) -->
+            <div class="form-group full-width" id="group-address">
+              <label for="address" class="form-label">
+                Address <span class="optional-badge">Optional</span>
+              </label>
+              <div class="input-wrapper textarea-wrapper">
+                <span class="input-icon textarea-icon" aria-hidden="true">📍</span>
+                <textarea id="address" name="address" class="form-input form-textarea" rows="3"
+                  placeholder="Enter your residential address, city, and pin code..."></textarea>
+              </div>
+              <div class="error-message" id="err-address"></div>
+            </div>
+
+          </div>
+
+          <!-- Buttons: Submit and Reset -->
+          <div class="form-buttons">
+            <button type="submit" id="btn-submit" class="btn-submit">
+              <span class="btn-spinner" id="btn-spinner" aria-hidden="true"></span>
+              <span class="btn-text" id="btn-text">Submit Registration</span>
+            </button>
+            <button type="button" id="btn-reset" class="btn-reset">
+              Reset Form
+            </button>
+          </div>
+
+        </form>
+
+      </main>
+
+    </div>
+  </div>
+
+  <!-- Custom JavaScript -->
+  <script src="script.js"></script>
+</body>
+
+</html>

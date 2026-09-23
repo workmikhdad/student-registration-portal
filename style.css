@@ -1,0 +1,790 @@
+/* ==========================================================
+   Modern Student Registration Form Stylesheet
+   ========================================================== */
+
+/* Design Tokens & Custom Properties */
+:root {
+  /* Brand Palette */
+  --bg-gradient-start: #e0f2fe;
+  --bg-gradient-end: #ede9fe;
+  --panel-bg: #1e1b4b;
+  --panel-accent: #312e81;
+  --card-bg: #ffffff;
+  
+  /* Input & Focus Colors */
+  --input-bg: #f8fafc;
+  --input-bg-focus: #ffffff;
+  --input-border: #e2e8f0;
+  --input-focus-border: #6366f1;
+  --input-focus-glow: rgba(99, 102, 241, 0.18);
+  
+  /* Button Gradients */
+  --btn-gradient: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+  --btn-gradient-hover: linear-gradient(135deg, #4338ca 0%, #2563eb 100%);
+  --btn-reset-border: #cbd5e1;
+  --btn-reset-color: #64748b;
+  --btn-reset-hover-bg: #f1f5f9;
+  
+  /* Status Colors */
+  --color-success: #10b981;
+  --color-success-glow: rgba(16, 185, 129, 0.2);
+  --color-error: #ef4444;
+  --color-error-bg: #fef2f2;
+  --color-error-border: #fca5a5;
+
+  /* Text Colors */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --text-on-dark: #f8fafc;
+  --text-on-dark-sub: #c7d2fe;
+
+  /* Typography */
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Radii & Shadows */
+  --radius-card: 20px;
+  --radius-input: 10px;
+  --radius-pill: 999px;
+  --card-shadow: 0 20px 45px -10px rgba(30, 27, 75, 0.12), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
+  --input-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+  
+  /* Transitions */
+  --transition-fast: all 0.2s ease;
+  --transition-normal: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Global Reset & Base Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Centered Page Wrapper */
+.page-wrapper {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+/* Dual Panel Card */
+.registration-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  box-shadow: var(--card-shadow);
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  overflow: hidden;
+  position: relative;
+  min-height: 640px;
+}
+
+/* ==========================================================
+   LEFT PANEL STYLES
+   ========================================================== */
+.left-panel {
+  background: var(--panel-bg);
+  background-image: radial-gradient(circle at top right, #312e81 0%, #1e1b4b 70%);
+  color: var(--text-on-dark);
+  padding: 3rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative Glow Orb */
+.left-panel::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(99, 102, 241, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.left-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 1;
+}
+
+/* University Cap Badge */
+.campus-badge {
+  width: 58px;
+  height: 58px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+.cap-emoji {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.brand-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  line-height: 1.15;
+}
+
+.brand-tagline {
+  color: var(--text-on-dark-sub);
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Feature List */
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.feature-icon-box {
+  width: 38px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  transition: var(--transition-fast);
+}
+
+.feature-item:hover .feature-icon-box {
+  background: rgba(99, 102, 241, 0.3);
+  transform: translateY(-2px);
+}
+
+.feature-text h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.15rem;
+}
+
+.feature-text p {
+  font-size: 0.8rem;
+  color: var(--text-on-dark-sub);
+  line-height: 1.4;
+}
+
+.left-panel-footer {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 1;
+}
+
+/* ==========================================================
+   RIGHT PANEL STYLES
+   ========================================================== */
+.right-panel {
+  padding: 3rem 3rem 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Form Header & Progress */
+.form-header {
+  margin-bottom: 2rem;
+}
+
+.form-header-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+
+.form-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.form-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-top: 0.15rem;
+}
+
+.step-indicator {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--input-focus-border);
+  background: rgba(99, 102, 241, 0.08);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill);
+}
+
+/* Progress Bar */
+.progress-bar-track {
+  width: 100%;
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--btn-gradient);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Form Labels */
+.form-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.required-star {
+  color: var(--color-error);
+  font-weight: 700;
+}
+
+.optional-badge {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: #f1f5f9;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  margin-left: auto;
+}
+
+/* Input Fields & Icon Wrappers */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 0.9rem;
+  font-size: 1rem;
+  color: var(--text-muted);
+  pointer-events: none;
+  user-select: none;
+  transition: var(--transition-fast);
+}
+
+.form-input {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius-input);
+  padding: 0.75rem 0.9rem 0.75rem 2.6rem;
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  outline: none;
+  box-shadow: var(--input-shadow);
+  transition: var(--transition-fast);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* Glowing Border on Focus */
+.form-input:focus {
+  background: var(--input-bg-focus);
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 3.5px var(--input-focus-glow);
+}
+
+/* Valid Input Border State */
+.form-group.is-valid .form-input {
+  border-color: #a7f3d0;
+  background: #fafdfb;
+}
+
+/* Error Input Border State */
+.form-group.has-error .form-input {
+  border-color: var(--color-error);
+  background: var(--color-error-bg);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+/* Select Field Customization */
+.form-select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 2.5rem;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 1rem;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* Date input font fix */
+input[type="date"] {
+  color: var(--text-primary);
+}
+
+/* Gender Radio Buttons (Styled Pill Group) */
+.gender-pill-group {
+  display: flex;
+  gap: 0.65rem;
+}
+
+.gender-pill {
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+}
+
+.gender-pill input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.pill-custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.72rem 0.6rem;
+  background: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: var(--radius-input);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+  user-select: none;
+}
+
+.pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--text-muted);
+  transition: var(--transition-fast);
+}
+
+.gender-pill input[type="radio"]:checked ~ .pill-custom {
+  background: rgba(99, 102, 241, 0.08);
+  border-color: var(--input-focus-border);
+  color: var(--input-focus-border);
+  font-weight: 600;
+}
+
+.gender-pill input[type="radio"]:checked ~ .pill-custom .pill-dot {
+  background: var(--input-focus-border);
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+}
+
+.gender-pill input[type="radio"]:focus ~ .pill-custom {
+  box-shadow: 0 0 0 3px var(--input-focus-glow);
+}
+
+.form-group.has-error .pill-custom {
+  border-color: var(--color-error-border);
+  background: var(--color-error-bg);
+}
+
+/* Textarea Field */
+.textarea-wrapper {
+  align-items: flex-start;
+}
+
+.textarea-icon {
+  top: 0.85rem;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+/* Inline Red Error Messages */
+.error-message {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-error);
+  min-height: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: var(--transition-fast);
+}
+
+.form-group.has-error .error-message {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Form Action Buttons */
+.form-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1.75rem;
+}
+
+/* Submit Button */
+.btn-submit {
+  width: 100%;
+  padding: 0.95rem 1.5rem;
+  background: var(--btn-gradient);
+  border: none;
+  border-radius: var(--radius-input);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px -4px rgba(79, 70, 229, 0.4);
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-submit:hover {
+  background: var(--btn-gradient-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px -4px rgba(79, 70, 229, 0.5);
+}
+
+.btn-submit:active {
+  transform: translateY(1px);
+}
+
+/* Submit Loading State */
+.btn-spinner {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.btn-submit.loading {
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.btn-submit.loading .btn-spinner {
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Reset Button */
+.btn-reset {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 1.5px solid var(--btn-reset-border);
+  border-radius: var(--radius-input);
+  color: var(--btn-reset-color);
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn-reset:hover {
+  background: var(--btn-reset-hover-bg);
+  color: var(--text-primary);
+  border-color: #94a3b8;
+}
+
+/* ==========================================================
+   SUCCESS OVERLAY CARD & ANIMATION
+   ========================================================== */
+.success-card {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+  animation: fadeInSuccess 0.4s ease-out forwards;
+}
+
+.success-card[hidden] {
+  display: none;
+}
+
+@keyframes fadeInSuccess {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Animated Checkmark Icon */
+.success-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1.25rem;
+}
+
+.checkmark-svg {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 3;
+  stroke: var(--color-success);
+  stroke-miterlimit: 10;
+  box-shadow: 0 0 0 var(--color-success-glow);
+  animation: fillCircle 0.4s ease-in-out 0.4s forwards, scaleCheck 0.3s ease-in-out 0.9s both;
+}
+
+.checkmark-circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 3;
+  stroke-miterlimit: 10;
+  stroke: var(--color-success);
+  fill: none;
+  animation: strokeCircle 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: strokeCheck 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
+}
+
+@keyframes strokeCircle {
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes strokeCheck {
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes fillCircle {
+  100% { box-shadow: inset 0 0 0 40px rgba(16, 185, 129, 0.1); }
+}
+
+@keyframes scaleCheck {
+  0%, 100% { transform: none; }
+  50% { transform: scale3d(1.1, 1.1, 1); }
+}
+
+.success-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.success-message {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  max-width: 420px;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.success-meta {
+  width: 100%;
+  max-width: 360px;
+  background: #f8fafc;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-input);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.meta-label {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.meta-value {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.meta-value.status-active {
+  color: var(--color-success);
+}
+
+.btn-register-another {
+  padding: 0.85rem 2rem;
+  background: var(--btn-gradient);
+  border: none;
+  border-radius: var(--radius-input);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+  transition: var(--transition-fast);
+}
+
+.btn-register-another:hover {
+  background: var(--btn-gradient-hover);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================
+   RESPONSIVE DESIGN (MOBILE & TABLET)
+   ========================================================== */
+@media (max-width: 900px) {
+  .registration-card {
+    grid-template-columns: 1fr;
+    border-radius: 16px;
+  }
+
+  .left-panel {
+    padding: 2.25rem 2rem;
+  }
+
+  .brand-title {
+    font-size: 1.6rem;
+  }
+
+  .feature-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .right-panel {
+    padding: 2.25rem 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 1rem 0.5rem;
+  }
+
+  .left-panel {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .feature-list {
+    grid-template-columns: 1fr;
+  }
+
+  .right-panel {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .gender-pill-group {
+    flex-direction: column;
+  }
+
+  .form-title {
+    font-size: 1.35rem;
+  }
+}
